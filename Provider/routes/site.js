@@ -1,4 +1,4 @@
-'use strict';
+                                                                                          'use strict';
 
 const async = require('async');
 const crypto = require('crypto');
@@ -78,9 +78,15 @@ module.exports.forgot = function (req, res, next){
 			req.flash('error', 'No existe un usuario con este email.');
 			return res.redirect('/forgot');
 			}
-			user.resetPasswordToken = token;
+            user.resetPasswordToken = token;
+            console.log('reset token', token);
 			user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-			user.save(function(err) { done(err, token, user); });
+            user.save(function (err) {
+                if (err) {
+                    console.log('error creating reset token');
+                }
+                done(err, token, user);
+            });
 		});
     },
     function (token, user, done) {

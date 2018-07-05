@@ -23,6 +23,7 @@
     "nodemailer": "latest",
     "nodemailer-smtp-transport": "latest",
     "oauth2orize": "latest",
+    "oauth2": "0.0.1",
     "passport": "latest",
     "passport-http": "latest",
     "passport-http-bearer": "latest",

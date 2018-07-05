@@ -4,9 +4,6 @@ const passport = require('passport');
 const bCrypt = require('bcrypt-nodejs');
 const Client = require('../db/client');
 
-/*
-* Modulo de respuesta de información del usuario a la aplciación cliente
-*/
 module.exports.info = [
     passport.authenticate('bearer', { session: false }), function (request, response) {
         console.log('Info endpoint');
@@ -18,7 +15,7 @@ module.exports.info = [
  * Ruta del formulario de registro de clientes  en el sistema.
  * @method clientSignupForm
  * @param {} request
- * @param {} response
+ * @param {} response 
  */
 module.exports.clientSignupForm = function (request, response) {
     response.render('clientSignup', { message: request.flash('signupMessage') });

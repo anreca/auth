@@ -2,7 +2,7 @@
 
 const passport = require('passport');
 
-//Endpoint para obtener de los datos del usuario
+//Endpoint de obtencio de los datos del usuario
 module.exports.info = [
     passport.authenticate('bearer', { session: false }),
     function (request, response) {
@@ -16,11 +16,19 @@ module.exports.info = [
     }
 ];
 
-//Endpoint para obtener de los datos del usuario
 module.exports.personaldata = [
     passport.authenticate('bearer', { session: false }),
     ensureValidToken("personaldata"),
+
     function (req, res) {
         res.json(req.user)
     }
 ]
+
+function ensureValidToken(scope) {
+    return function (req, res, next) {
+        console.log("ensureScope[" + scope + "], req.authInfo=", req.authInfo);
+        console.log("req.user=", req.user);
+        next();
+    };
+}

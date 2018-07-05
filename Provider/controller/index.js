@@ -5,20 +5,20 @@ const BearerStrategy = require('passport-http-bearer').Strategy;
 const BasicStrategy = require('passport-http').BasicStrategy;
 const ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 const bCrypt = require('bcrypt-nodejs');
 
-const config = require('../config/config');
+var config = require('../config/config');
 const Client = require('../db/client');
 const AccessToken = require('../db/accessToken');
 const User = require('../db/user');
 const utils = require('../utils');
 
 /*
- * Modulo de inicializacion de las estrategias de autenticacion.
+ * Modulo de inicializacion de las estrategias de autenticacion. 
  * @method exports
  * @param {} passport
- * @return
+ * @return 
  */
 passport.use('local', new LocalStrategy({
         usernameField: 'email',
@@ -38,11 +38,11 @@ passport.use('local', new LocalStrategy({
             if (!user) {
                 return done(null, false, req.flash('loginMessage', 'Datos no validos.'));
             }
-            //si la contraseï¿½a proporcionada es incorrecta, devuelve mensaje flash.
+            //si la contraseña proporcionada es incorrecta, devuelve mensaje flash.
             if (!user.isValidPassword(password)) {
                 return done(null, false, req.flash('loginMessage', 'Datos no validos.'));
             }
-            //si existe un usuario y la contraseï¿½a es correcta, devuelve el usuario.
+            //si existe un usuario y la contraseña es correcta, devuelve el usuario.
             return done(null, user);
         });
     }));
@@ -61,8 +61,7 @@ passport.use('local', new LocalStrategy({
         });
     });
 
-    // Modulo de la estrategia Bearer para la autenticacion de clientes y usuarios
-    // a partir del token de acceso.
+
     passport.use(new BearerStrategy(
         function (accessToken, done) {
             console.log('BearerStrategy');
@@ -90,7 +89,7 @@ passport.use('local', new LocalStrategy({
    }));
 
 
-   //Modulo de inicio de sesion de clientes
+
     passport.use(new BasicStrategy(
         function (clientId, password, done) {
             console.log("basicstrategy clientlogin")
@@ -102,7 +101,7 @@ passport.use('local', new LocalStrategy({
             });
         }
     ));
-    //Modulo de inicio de sesion de clientes
+
     passport.use(new ClientPasswordStrategy(
     function (clientId, clientSecret, done) {
         console.log("clientpasswordstrategy")
@@ -113,9 +112,7 @@ passport.use('local', new LocalStrategy({
             return done(null, client);
         });
     }
-    ));
-
-    //Modulo de registro de aplicaciones cliente.
+));
     passport.use('client-signup', new LocalStrategy({
         usernameField: 'id',
         passwordField: 'password',
@@ -147,7 +144,6 @@ passport.use('local', new LocalStrategy({
             });
         }));
 
-    //Modulo de autenticaciÃ³n de usuarios via Facebook
     passport.use('facebook', new FacebookStrategy({
         clientID: config.facebook.clientID,
         clientSecret: config.facebook.clientSecret,
@@ -183,7 +179,6 @@ passport.use('local', new LocalStrategy({
             });
         }));
 
-    // Modulo de registro de usuario a partir del formulario
     passport.use('local-signup', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',

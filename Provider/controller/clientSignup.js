@@ -1,9 +1,13 @@
+const LocalStrategy = require('passport-local').Strategy;
+const Client = require('../db/client');
+const bCrypt = require('bcrypt-nodejs');
+const utils = require('../utils');
 
 /*
  * Modulo de registro de clientes(consumers) en el sistema a partir del formulario de registro.
  * @method exports
  * @param {} passport
- * @return
+ * @return 
  */
 module.exports = function (passport) {
 
@@ -38,3 +42,4 @@ module.exports = function (passport) {
         });
     }));
 };
+
