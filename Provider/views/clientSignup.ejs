@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>Client Application Signup</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <div class="panel-title">Formulario de registro de usuario</div>
+            <div style="float:right; font-size: 85%; position: relative; top:-10px">
+              <a id="signinlink" href="/login">Iniciar sesión</a>
+            </div>
+          </div>
+          <div class="panel-body" >
+            
+            <form id="signupform" action="/clientsignup" class="form-horizontal" role="form" method="post">
+              
+              <div class="form-group">
+                <label for="id" class="col-md-3 control-label">Id del cliente</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="id" placeholder="Id" required="" />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="name" class="col-md-3 control-label">Nombre del cliente</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="name" placeholder="Nombre" required="" />
+                </div>
+              </div>
+
+			  <div class="form-group">
+                <label for="uri" class="col-md-3 control-label">Uri de redirección</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="uri" placeholder="uri" required="" />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="password" class="col-md-3 control-label">Contraseña</label>
+                <div class="col-md-9">
+                  <input type="password" class="form-control" name="password" placeholder="Contraseña" required="" />
+                </div>
+              </div>
+              
+              
+              <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                  <button id="btn-signup" type="submit" class="btn btn-info"> <i class="icon-hand-right"></i> Dar de alta el cliente </button>
+                  <span style="margin-left:8px;"> o  </span>
+                  <a class="btn" href="/login"> Cancelar </a>
+                </div>
+              </div>
+
+			  
+			  <% if (message.length > 0) { %> <div><%= message %></div> <% } %>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

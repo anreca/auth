@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Test App 1</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="/css/one-page-wonder.min.css" rel="stylesheet" />
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+
+
+  <body>
+    
+    <header class="masthead text-center text-white">
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Test Domain App 1</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link disabled">Hola <%= user.name %>!  </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Cerrar Sesión</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+      <div class="masthead-content">
+        <div class="container">
+          <h1 class="masthead-heading mb-0">Test Domain 1</h1>
+          <h2 class="masthead-subheading mb-0"> Hola <%= user.name %>!</h2>
+          <table>
+              <tbody id="tbody"></tbody>
+          </table>
+
+        </div>
+      </div>
+      <div class="bg-circle-1 bg-circle"></div>
+      <div class="bg-circle-2 bg-circle"></div>
+      <div class="bg-circle-3 bg-circle"></div>
+      <div class="bg-circle-4 bg-circle"></div>
+    </header>
+
+
+
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var list = <%- json %>;
+        console.log(list.length);
+        var newList = JSON.stringify(list);
+        var tr = "<tr>";
+        tr += "<td><h3>" + "Nombre" + "</h3></td><td><h3>" + "Ciudad" + "</h3></td><td><h3>" + "Longitud" + "</h3></td></tr>";
+
+        for (var i = 0; i < list.length; i++) {
+            tr += "<td>" + list[i].beach.nombre + "</td><td>" + list[i].beach.ciudad + "</td><td>" + list[i].beach.longitud + "</td></tr>";
+        }
+        tbody.innerHTML += tr;
+
+        });
+      </script>
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-black">
+      <div class="container">
+        <p class="m-0 text-center text-white small">Copyright &copy; Antonia Retamal</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+  </body>
+</html>
